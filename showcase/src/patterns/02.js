@@ -14,10 +14,8 @@ const useClapAnimation = ({
   clapTotalEl
 }) => {
   const [ animationTimeline, setAnimationTimeline ] = useState(() => new mojs.Timeline());
-  console.log('O useClapAnimation foi chamado');
 
   useLayoutEffect(() => {
-    console.log('O effect do useClapAnimation foi chamado com as refs como ', clapEl, countEl, clapTotalEl);
     if(!clapEl || !countEl || !clapTotalEl) return;
     //Defining animation values
     const tlDuration = 300;
@@ -87,7 +85,6 @@ const useClapAnimation = ({
     const newAnimationTimeline = animationTimeline.add([scaleButton, countTotalAnimation, countAnimation, triangleBurst, circleBurst]);
     setAnimationTimeline(newAnimationTimeline)
   }, [clapEl, countEl, clapTotalEl])
-  console.log('O useClapAnimation retornou a animação');
   return animationTimeline;
 }
 //Ends - Hook
@@ -98,7 +95,6 @@ const MediumClap = () => {
   const [{clapRef, clapTotalRef, clapCountRef}, setRefs] = useState({})
   const { count, countTotal } = clapState; 
 
-  console.log('O componente MediumClap renderizou');
 
   const animationTimeline = useClapAnimation({
     clapEl: clapRef,
@@ -147,7 +143,6 @@ const ClapIcon = ({count}) => {
 }
 
 const ClapCount = ({count, setRef}) => {
-  console.log('O componente ClapCount renderizou');
   return <span data-refkey="clapCountRef" ref={setRef} className={styles.count}>+ {count}</span>
 }
 
